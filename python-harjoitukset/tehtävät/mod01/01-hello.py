@@ -1,5 +1,5 @@
-print ("Moikka maailma, nimeni on Pierre")
-print ("Kiva nähdä")
+print ("Hello World! My name is Pierre.")
+print ("Good to see you!")
 
-nimi = input("Mikä sinun nimesi on: ")
-print (f"Terve {nimi}, kiva tavata!")
+name = input("What's your name?: ")
+print (f"Hello {name}, nice to meet you!")
