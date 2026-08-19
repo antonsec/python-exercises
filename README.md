@@ -6,10 +6,11 @@
 
 I completed exercises 1 and 2.
 
-## Module 2
+## Module 3
 
-I completed exercises 1, 2, and 3.
+I completed exercises 1-6
 
 I completed exercise 4 partially, but the problem was calculating only the grams correctly.
 
-## Module 3 and so on... s
+## Module 4
+(in progress)
