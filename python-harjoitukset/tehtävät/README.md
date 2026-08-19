@@ -12,4 +12,4 @@ I completed exercises 1, 2, and 3.
 
 I completed exercise 4 partially, but the problem was calculating only the grams correctly.
 
-## Module 3 and so on... s
+## Module 3 and so on.....
