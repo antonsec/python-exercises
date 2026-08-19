@@ -1,6 +1,6 @@
 # Software 1 - Python exercises
 
-**My Name**
+**Pierre**
 
 ## Module 1
 
