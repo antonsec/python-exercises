@@ -10,7 +10,5 @@ I completed exercises 1 and 2.
 
 I completed exercises 1-6
 
-I completed exercise 4 partially, but the problem was calculating only the grams correctly.
-
 ## Module 4
-(in progress)
+finished Module 4, struggled with leap year..
