@@ -11,4 +11,4 @@ I completed exercises 1 and 2.
 I completed exercises 1-6
 
 ## Module 4
-finished Module 4, struggled with leap year..
+finished Module 4, struggled with leap year.. 
