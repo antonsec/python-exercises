@@ -11,7 +11,10 @@ I completed exercises 1 and 2.
 I completed exercises 1-6
 
 ## Module 4
-finished Module 4, struggled with leap year.. 
+Finished Module 4, struggled with leap year.. 
 
 ## Module 5
-finished Module 5.
+Finished Module 5.
+
+## Module 6
+Started Modules 6.
