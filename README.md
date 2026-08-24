@@ -17,4 +17,7 @@ Finished Module 4, struggled with leap year.. 
 Finished Module 5.
 
 ## Module 6
-Started Modules 6.
+Finished Module 6.
+
+## Module 7
+Started with Module 7... Fuctions are new to me so this is hard, but I'm getting the hang of it.
