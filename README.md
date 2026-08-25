@@ -20,4 +20,4 @@ Finished Module 5.
 Finished Module 6.
 
 ## Module 7
-Started with Module 7... Fuctions are new to me so this is hard, but I'm getting the hang of it.
+Finished Module. I have to work on the project.
