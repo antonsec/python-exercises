@@ -1,6 +1,6 @@
 import random
 
-def roll_dice(sides): # were making a program that requires a parameter of (sides)
+def roll_dice(sides): # were making a program that requires 1 parameter (sides)
     i = random.randint(1, sides) #generating a random number between 1 and (sides)
     return i
 

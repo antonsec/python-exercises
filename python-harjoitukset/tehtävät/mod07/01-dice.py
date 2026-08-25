@@ -1,4 +1,5 @@
 import random
+
 def roll_dice():
     i = random.randint(1,6)
     return i
