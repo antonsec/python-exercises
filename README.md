@@ -11,7 +11,7 @@ Finished Module 1.
 Finished Module 3.
 
 ## Module 4
-Finished Module 4, struggled with leap year.. 
+Finished Module 4. 
 
 ## Module 5
 Finished Module 5.
