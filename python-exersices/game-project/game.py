@@ -2,21 +2,20 @@ name = "Pierre" #str(input("Hello traveler.. What may your name be?\n"))
 print (f"Welcome {name}. Let's get you started")
 age = 13 #int(input(f"Oh.. well hello {name}, good to meet you! May I ask ye age?\n"))
 
-inventory = []
+inventory = [] # using this as players inventory
 
 def adding_item(item):
-    inventory.append(item)
+    inventory.append(item) #using this function to add items ti inventory to avoid repetition
 
-def showing_items():
+def showing_items(): # this function goes through every item in players inventory
     for i in inventory:
         print (i)
 
-def profile():
+def profile(): # this function prints the players profile
     print ("--- Player profile ---")
     print (f"Name: {name}")
     print (f"Age: {age}")
     print (f"Inventory:")
-    showing_items()
 
 while True:
     if age < 12:
@@ -36,7 +35,7 @@ while True:
 
     elif command =="2":
         print ("Your invetory is... interesting to say the least.\nHeres what you have:")
-        showing_items()
+        profile()
 
     elif command == "3":
         profile()
