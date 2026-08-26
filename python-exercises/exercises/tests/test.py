@@ -14,9 +14,3 @@
 # print (text)
 
 # Practise
-
-usage = float(input("What is your electricty usage? Please enter in (kWh)\n"))
-
-if usage <= 50:
-    price = usage * 50
-    print (f"The price of the electricty is {price} cents.")
