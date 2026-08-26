@@ -16,7 +16,8 @@ def profile(): # this function prints the players profile
     print (f"Name: {name}")
     print (f"Age: {age}")
     print (f"Inventory:")
-
+    showing_items()
+    
 while True:
     if age < 12:
         print ("Yikes! Sorry! You're too young for this game! Try again in a few years!")
@@ -35,7 +36,7 @@ while True:
 
     elif command =="2":
         print ("Your invetory is... interesting to say the least.\nHeres what you have:")
-        profile()
+        showing_items()
 
     elif command == "3":
         profile()
