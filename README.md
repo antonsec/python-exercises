@@ -4,11 +4,11 @@
 
 ## Module 1
 
-I completed exercises 1 and 2.
+Finished Module 1.
 
 ## Module 3
 
-I completed exercises 1-6
+Finished Module 3.
 
 ## Module 4
 Finished Module 4, struggled with leap year.. 
