@@ -1,5 +1,5 @@
 numbers  = []
-print ("Input empy string to end program.")
+print ("Input empty string to end program.")
 
 while True:
     value = input(f"Input numbers here: ")
