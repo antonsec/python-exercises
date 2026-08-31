@@ -10,14 +10,14 @@ while True:
         break
 
     elif option == 1:
-        ICAO = input("Enter ICAO code of the new airport: ")
+        icao = input("Enter ICAO code of the new airport: ")
         airport_name = input("Enter the new airports name: ")
-        airport[ICAO] = airport_name
+        airport[icao] = airport_name
 
     elif option == 2:
-        old_ICAO = input("Enter given ICAO code: ")
+        old_icao = input("Enter given ICAO code: ")
 
-        if old_ICAO in airport:
-            print (airport[old_ICAO])
+        if old_icao in airport:
+            print (airport[old_icao])
         else:
-            print (f"{old_ICAO} doesn't exist.")
+            print (f"{old_icao} doesn't exist.")

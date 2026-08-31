@@ -1,21 +1,14 @@
 month = int(input("Enter the number of a month: "))
+seasons = ("Winter", "Spring", "Summer", "Autumn")
 
-seasons = [
-    {
-        1:"Spring",
-        2:"Spring",
-        3:"Spring",
-        4:"Summer",
-        5:"Summer",
-        6:"Summer",
-        7:"Autumn",
-        8:"Autumn",
-        9:"Autumn",
-        10:"Winter",
-        11:"Winter",
-        12:"Winter"
-    }
-]
+if month in (12,1,2):
+    print (seasons[0])
+    
+elif month in (3,4,5):
+    print (seasons[1])
 
-season = seasons[0][month]
-print (season)
+elif month in (6,7,8):
+    print (seasons[2])
+
+elif month in (9,10,11):
+    print (seasons[3])
