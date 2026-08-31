@@ -20,4 +20,8 @@ Finished Module 5.
 Finished Module 6.
 
 ## Module 7
-Finished Module. I have to work on the project.
+Finished Module 7.
+
+
+## Module 8
+Finished Module 8. 

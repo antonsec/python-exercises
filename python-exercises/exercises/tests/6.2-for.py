@@ -15,7 +15,6 @@ while True:
         else:
             list.remove(i)
 
-list.sort(reverse=True)
 myset = set(list)
 
 print (myset)
