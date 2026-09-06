@@ -12,7 +12,7 @@ def showing_items(): # this function goes through every item in players inventor
         print (i)
 
 def profile(): # this function prints the players profile
-    print ("--- Player profile ---")
+    print (f"--- Player profile ---")
     print (f"Name: {name}")
     print (f"Age: {age}")
     print (f"Inventory:")
