@@ -46,4 +46,4 @@ print("-" * 55)
 
 
 for car in cars:
-    print(f"{car.reg:<15}" f"{car.max_speed:<15}" f"{car.speed:<15}" f"{car.distance:<15}")
+    print(f"{car.reg:<15} {car.max_speed:<15} {car.speed:<15} {car.distance:<15}")

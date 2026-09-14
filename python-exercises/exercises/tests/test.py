@@ -15,7 +15,3 @@
 
 # Practise
 
-list = ["elephant"]
-
-for i in list:
-    print (len(i))
