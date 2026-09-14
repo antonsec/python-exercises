@@ -1,18 +1,18 @@
 inventory = ["Dagger", "Torch"] 
 health = 100
+level = 0
 
 class Players: # adding class Players and giving player name, age and inventory
-    def __init__(self, name, age, inventory, health):
+    def __init__(self, name, age, inventory, health, level): # __init__ function
         self.name = name
         self.age = age
         self.inventory = inventory
         self.health = health
+        self.level = level
 
 def profile(): # this function prints the players profile
     print (f"--- Player profile ---")
-    print (f"Name: {player.name}")
-    print (f"Age: {player.age}")
-    print (f"Health: {player.health}")
+    print (f"Name: {player.name}\nAge: {player.age}\nHealth: {player.health}\nLevel: {player.level}")
     print ("")
     print (f"Inventory:")
     showing_items()
@@ -31,7 +31,7 @@ def showing_items(): # this function goes through every item in players inventor
 
 name = input("Hello traveler.. What is your name? ")
 age = int(input(f"\nOh.. well hello {name}, good to meet you! May I ask ye age? "))
-player = Players(name, age, inventory, health) # adding player into class Players
+player = Players(name, age, inventory, health, level) # adding player into class Players
 
 
     
@@ -48,18 +48,16 @@ while True: # looping the program untill user input an empty string
         break
 
     if command == "1": # first option
-        new_item = " "
         print ("Alright adding items!\n")
-        while new_item != "": # empty line ends adding item program
+        while True: 
             new_item = input(f"\nWhat item would you like to add? ")
 
-            if new_item == "":
+            if new_item == "": # empty line ends adding item program
                 print ("\nDone adding items...")
                 break
              # asking user for item
             adding_item(new_item) # addig item using adding_item function
             print (f"Added {new_item} to inventory!") # printing what item added to user
-
 
     elif command =="2": #showing user inventory
         print ("\nYour invetory is... interesting to say the least.\nHeres what you have:")
