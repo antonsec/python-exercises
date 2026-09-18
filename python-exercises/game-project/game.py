@@ -12,7 +12,7 @@ tower_items = [] # keeps track of tower items
 chamber_items = [] # keeps track of chamber items
 good_choices = 0 # counts good decisions
 bad_choices = 0 # counts bad decisions
-knight_status = "none" # remembers what the player did to the knight
+knight_status = "none" # remembers what the player did to the knight / this acts as the global version of knight_status
 
 
 class Players: # blueprint for creating characters
@@ -56,6 +56,20 @@ def add_item(item): # gives an item to player
     player.inventory.append(item)
 
 
+def pack_item(): # asks player for an item and adds it to inventory
+    item = input("What item would you like to pack? ").strip()
+
+    if item:
+        add_item(item)
+        print(f"Added {item} to your inventory.")
+    else:
+        print("Please enter an item name.")
+
+
+def quit_game(): # displays goodbye message when player quits
+    print(f"See you again {player.name}...")
+
+
 def add_dungeon_item(item): # remembers dungeon loot
     dungeon_items.append(item)
 
@@ -69,11 +83,11 @@ def add_tower_item(item): # remembers tower loot
 
 
 def show_dungeon_items(): # shows items found in dungeon
-    if not dungeon_items:
+    if not dungeon_items: # if dungeon_items is empty
         print("No items found here.")
         print("")
 
-    for item in dungeon_items:
+    for item in dungeon_items: # if its not empty
         print(item)
 
 
@@ -103,7 +117,7 @@ def level_up(level_up): # increases player level
 
 
 def show_items(): # displays players inventory
-    if not player.inventory:
+    if not player.inventory: # if players inventory is empty
         print("Empty inventory..")
         print("")
     else:
@@ -161,12 +175,14 @@ You find an unlit torch and a lighter and decide to walk back to the castle.
 As you keep walking, you notice one of the stone walls looks slightly different from the others.
 You push against it and a hidden doorway slowly opens.
 Inside is a tiny storage room covered in dust.
-Most of it has already been looted, but an old torch is still hanging from the wall.
-You take the torch and head back toward the castle.
+
+Most of it has already been looted, but an old torch is still hanging from the wall with a lighter below it.
+You take the torch and the lighter and head back toward the castle.
 """)
 
         add_item("Unlit Torch")
         add_dungeon_item("Unlit Torch")
+
         add_item("Lighter")
         add_dungeon_item("Lighter")
 
@@ -182,13 +198,14 @@ You take the lighter and dagger and quickly head back.
         add_item("Rusty Dagger")
         add_item("Lighter")
         add_item("Unlit Torch")
+        
         add_dungeon_item("Rusty Dagger")
         add_dungeon_item("Unlit Torch")
         add_dungeon_item("Lighter")
 
 
 def courtyard(): # controls courtyard events
-    global knight_status
+    global knight_status # use global version of knight_status which is called at the beginning
 
     scenario = random.randint(1, 3) # chooses one random courtyard event
 
@@ -206,16 +223,16 @@ Do you:
 3. Leave it alone
 ''')
 
-        while True:
+        while True: # starts another loop for more desicions
             courtyard_choice = int(input("Choice: "))
-            clear_screen()
+            clear_screen() # clear screen for nicer preview
 
             if courtyard_choice == 3:
                 print("You leave the courtyard...")
                 break
 
             elif courtyard_choice == 1:
-                courtyard_chance = random.randint(1, 3)
+                courtyard_chance = random.randint(1, 3) # has 3 different random scenarios
 
                 if courtyard_chance == 1:
                     print('''
@@ -254,7 +271,7 @@ Happy with your findings you head back to where you started.
                 level_up(2)
                 break
 
-            else:
+            else: # incase user inputs something else
                 print("Not a valid choice.")
 
     elif scenario == 2:
@@ -385,7 +402,6 @@ Maybe he wasn't completely asleep.
 
                     print('''
 You reach toward the knight's belongings.
-
 His eyes suddenly open.
 
 Knight: "Seriously?"
@@ -468,7 +484,7 @@ You search through your inventory, hoping you brought something that could help.
 
             show_items()
 
-            if "Unlit Torch" in player.inventory and "Lighter" in player.inventory:
+            if "Unlit Torch" in player.inventory and "Lighter" in player.inventory: # checking if user has correct items
                 print('''
 You pull out the unlit torch and the lighter.
 After a few tries, the torch finally catches fire.
@@ -512,7 +528,7 @@ You manage to get back up, but that definitely hurt.
 
 
 def tower_chamber(): # final area and ending
-    global knight_status
+    global knight_status # inside this function, when i use/change knight_status, i mean the global version
 
     print('''
 You return to the top of the tower.
@@ -697,7 +713,7 @@ def show_choices(): # shows locations that are currently available
     if "dungeon" not in choices and "courtyard" not in choices and "tower" not in choices and "tower_chamber" in choices:
         print("4. Enter the tower chamber") # final location appears after other areas are finished
 
-    print("Other choices: inventory, profile, quit")
+    print("Other choices: pack, inventory, profile, quit")
 
 
 name = input("Hello traveler.. What is your name? ")
@@ -725,8 +741,11 @@ but you'll need to explore the surrounding rooms and gather whatever might help 
         clear_screen()
 
         if choice == "quit" or choice == "":
-            print(f"See you again {player.name}...")
+            quit_game()
             break
+
+        elif choice == "pack":
+            pack_item()
 
         elif choice == "inventory":
             show_items()

@@ -233,26 +233,32 @@
 
 
 # final boss
-students = {
-}
+# students = {
+# }
 
-while True:
-    name = input("Enter student name: ")
-    if name == "stop":
-        break
-    score = int(input("Enter score: "))
+# while True:
+#     name = input("Enter student name: ")
+#     if name == "stop":
+#         break
+#     score = int(input("Enter score: "))
 
-    students[name] = score
+#     students[name] = score
 
-print ("")
+# print ("")
 
-for name in students:
-    print (f"{name}: {students[name]}")
+# for name in students:
+#     print (f"{name}: {students[name]}")
 
-count = 0
+# count = 0
 
-for name in students:
-    if students[name] >= 50:
-        count += 1
+# for name in students:
+#     if students[name] >= 50:
+#         count += 1
 
-print (F"Passed: {count}")
+# print (F"Passed: {count}")
+
+
+# Study
+for i in range(5):
+    print (i)
+    
