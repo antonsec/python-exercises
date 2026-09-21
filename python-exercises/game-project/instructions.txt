@@ -2,26 +2,35 @@
 CASTLE ESCAPE - INSTRUCTIONS
 
 Your goal is to explore the castle, collect useful items and find a way to escape.
+Type 1 to enter the dungeon, 2 to enter the courtyard and 3 to enter the tower.
 
-Type 1 for the dungeon, 2 for the courtyard and 3 for the tower.
+You can explore the areas in different orders and revisit rooms to collect items you may have missed.
 
-You can explore in different orders and revisit rooms to collect things you missed.
-Collect the unlit torch from the dungeon and the lighter from the courtyard.
-Search your inventory in the tower to light the torch.
-After finishing all three areas, type 4 to enter the final chamber.
+Collect the Unlit Torch from the dungeon and the Lighter from the courtyard.
+You will need both of them before you can properly explore the tower.
 
-collect - pick up the item in your current room
-inventory - view your items
-profile - view your name, age, health, level and location
-pack - add an item of your choice to your inventory
-instructions - show these instructions again
-save - save your progress, replacing the previous save
-load - load your saved progress
-quit - quit the game
+Inside the tower, search your inventory to light the torch.
+After completing the dungeon, courtyard and tower, type 4 to enter the final chamber.
 
-The map and tower key are extra collectibles.
-Food and potions are loot. There isn't a use-item command.
-Your choices affect your health, items and the ending.
-Helping, ignoring or stealing from the knight leads to a different ending.
+COMMANDS:
+
+collect - Pick up the item in your current room.
+
+inventory - View the items in your inventory.
+
+profile - View your name, age, health, level, current location and inventory.
+
+pack - Add an item of your choice to your inventory.
+
+instructions - Show these instructions again.
+
+save - Save your current progress. This replaces the previous save.
+
+load - Load your previously saved progress.
+
+quit - Quit the game.
+
+Your choices can affect your health, level, good and bad choices, and the ending of the game.
+Your decisions involving Guts can also change the final ending.
 
 Explore carefully and good luck escaping the castle!

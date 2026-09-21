@@ -791,11 +791,10 @@ Bad choices: {bad_choices}
 
 Thanks for playing!
 ''')
-name = "Pierre"#input("Hello traveler.. What is your name? ")
-age = 18# int(input(f"\nOh.. well hello {name}, good to meet you! May I ask your age? "))
+name = input("Hello traveler.. What is your name? ")
+age = int(input(f"\nOh.. well hello {name}, good to meet you! May I ask your age? "))
 
 unlit_torch = Item("Unlit Torch", 2)
-apple = Item("Apple", 1)
 lighter = Item("Lighter", 1)
 old_map = Item("Old Map", 1)
 
@@ -897,9 +896,9 @@ but I guess we can check if we left something behind.
 ''')
                 if courtyard_room.item is not None:
                     print("""
-You notice the Unlit Torch is still here.
+You notice the Lighter is still here.
 
-Type "collect" to pick the Unlit Torch up.
+Type "collect" to pick the Lighter up.
 """)
                 else: print("Looks like there's nothing left to collect here.")
 
@@ -923,7 +922,6 @@ Here's what we got from the tower:
             elif "Unlit Torch" in player.inventory and "Lighter" in player.inventory:
                 print('''
 This seems pretty scary, but it looks like we have what we need now.
-You pull the Lighter and Unlit Torch out and set the Torch on fire.
 It's pretty darn dark in there.
 ''')
                 player.move(tower_room)
