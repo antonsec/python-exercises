@@ -335,7 +335,6 @@ Type "collect" to pick the lighter up.
                     level_up(5)
                     heal(10)
                     break
-
                 else:
                     print('''
 You take a sip from the fountain..
