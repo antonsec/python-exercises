@@ -333,6 +333,7 @@ As you're leaving the courtyard you notice a lighter beside a bush.
 Type "collect" to pick the lighter up.
 ''')
                     level_up(5)
+                    heal(10)
                     break
 
                 else:
@@ -608,6 +609,7 @@ You stumble down a short flight of stairs and hit the ground hard.
 
 You manage to get back up, but that definitely hurt.
 ''')
+            take_damage(15)
             break
         else:
             print("Not a valid choice.")
