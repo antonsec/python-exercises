@@ -1,0 +1,27 @@
+
+CASTLE ESCAPE - INSTRUCTIONS
+
+Your goal is to explore the castle, collect useful items and find a way to escape.
+
+Type 1 for the dungeon, 2 for the courtyard and 3 for the tower.
+
+You can explore in different orders and revisit rooms to collect things you missed.
+Collect the unlit torch from the dungeon and the lighter from the courtyard.
+Search your inventory in the tower to light the torch.
+After finishing all three areas, type 4 to enter the final chamber.
+
+collect - pick up the item in your current room
+inventory - view your items
+profile - view your name, age, health, level and location
+pack - add an item of your choice to your inventory
+instructions - show these instructions again
+save - save your progress, replacing the previous save
+load - load your saved progress
+quit - quit the game
+
+The map and tower key are extra collectibles.
+Food and potions are loot. There isn't a use-item command.
+Your choices affect your health, items and the ending.
+Helping, ignoring or stealing from the knight leads to a different ending.
+
+Explore carefully and good luck escaping the castle!

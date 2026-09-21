@@ -1,0 +1,17 @@
+Pierre
+18
+[]
+85
+0
+Dungeon
+none
+['courtyard', 'tower', 'tower_chamber']
+0
+0
+[]
+[]
+[]
+True
+True
+True
+False

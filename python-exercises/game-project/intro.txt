@@ -1,0 +1,10 @@
+
+You wake up inside an abandoned castle with no memory of how you got there.
+The main gates are sealed shut.
+
+Somewhere inside the castle is a way out,
+but you'll need to explore the surrounding rooms and gather whatever might help you escape.
+
+You see an old map right next to where you lay.
+
+Type "collect" to pick it up.

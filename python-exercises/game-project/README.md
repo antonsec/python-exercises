@@ -3,51 +3,73 @@
 
 ## What is this game?
 
-The Game is a story telling/adventure game coded 100% in Python.
+The Game is a text based adventure game coded in Python.
+You wake up inside an abandoned castle without knowing how you got there.
+Your goal is to explore the rooms, collect useful items and find a way out.
 
-I've built this game following these [instructions](https://metropolia-sw.github.io/sw1-python/en/programming_project_1.html).
+The project follows these [instructions](https://metropolia-sw.github.io/sw1-python/en/programming_project_1.html).
 
-In the game you wake up inside an abandoned castle without really knowing how you got there. The main gates are locked and your main goal is to explore the castle, collect useful items and eventually find a way out.
+## How to play
 
-The game is played completely through the terminal and you make choices by typing numbers or commands.
+Open a terminal in the game-project folder and run:
 
-## Objective
+```bash
+python3 game.py
+```
 
-The objective of the game is to escape the castle without dying.
-You can explore different locations like the dungeon, courtyard and tower. Some places give you useful items that you will need later in the game.
-The choices you make can also affect what happens later and what ending you get.
+Enter your name and age. The game is for ages 12 and up.
+Type numbers to choose rooms and answer questions.
+You can visit the dungeon and courtyard in either order and revisit rooms to collect items.
 
-## How does the game work?
+- `collect` picks up an item from your current room
+- `inventory` shows the items you have
+- `profile` shows your name, age, health, level and location
+- `pack` adds an item you type to your inventory, like in the original game
+- `instructions` shows the instructions again
+- `save` saves your progress to save.txt, replacing the previous save
+- `load` continues from save.txt
+- `quit` exits the game
 
-The game has a main menu where you can choose where you want to go.
-You can also use commands like:
-
-- `inventory` to see the items you have collected
-- `profile` to see your name, age, health and level
-- `quit` to stop playing
-
-Some locations have random events, so the game won't always be exactly the same every time.
-The player can lose health, heal, level up and collect different items.
-Some itens are important for progressing. For example you need an unlit torch and a lighter to properly continue through the tower.
+Collect the unlit torch in the dungeon and the lighter in the courtyard.
+In the tower, choose to search your inventory to light the torch.
+After exploring the dungeon, courtyard and tower, the tower chamber becomes available.
+If you leave the tower without lighting the torch, you can try again.
+The map and tower key are extra collectibles. They aren't needed to escape.
+Food and the healing potion are collected as loot. There isn't a use-item command.
 
 ## Choices and endings
 
-The game keeps track of good and bad choices.
-One important part of the game is meeting a wounded knight called Guts.
-You can help him, ignore him or try to steal from him.
-What you decide will affect the ending of the game.
+The dungeon and courtyard have random events, so each game can be different.
+Some choices change your health, level and inventory.
+Normal events can't reduce your health below 1.
 
-If you help him, he can help you escape later.
+There are three story paths depending on what you do when you meet Guts:
 
-If you ignore him, you will have to escape alone.
+1. Help the wounded knight. He helps you open the gate and you escape together.
+2. Ignore the knight. You struggle with the gate but escape alone.
+3. Try to steal from the knight. He remembers you and the game ends with your death.
 
-If you anger him, he will remember it and the ending can go very badly for you.
+If you don't meet him in the courtyard, you meet him in the final chamber.
+The game counts good and bad choices and shows them at the end.
+These counters describe your decisions. The knight's status decides the ending.
+
+## Files
+
+- game.py contains the menus, events and save/load functions
+- intro.txt contains the opening story
+- instructions.txt contains the instructions shown during the game
+- save.txt stores one saved game as plain text
+- game_objects/__init__.py imports the classes from the package
+- game_objects/item.py contains the Item class
+- game_objects/player.py contains the Player class
+- game_objects/room.py contains the Room class
+
+The save remembers your profile, inventory, location, completed rooms, knight decision,
+good and bad choices, room loot and which items are still available to collect.
+Run the game from its folder so it can find the text files.
 
 ## Sustainable Development
 
-For the sustainable development part I chose **Goal 3: Good Health and Well-being**.
-This is shown in the game through the wounded knight.
-The player gets the choice to help someone who is injured instead of just ignoring them or taking advantage of them.
-
-If the player helps him, they use medical supplies to help his injuries and this choice also has a positive effect later in the game.
-I wanted to include the sustainable development part in a way that actually fits into the story instead of just adding it randomly.
+The game includes **Goal 3: Good Health and Well-being** through the wounded knight.
+You can use medical supplies to help someone who is injured.
+Helping him has a positive effect later when he helps you escape.
