@@ -259,6 +259,32 @@
 
 
 # Study
-for i in range(5):
-    print (i)
+
+class Vehicle:
+    def __init__(self, brand, year):
+        self.brand = brand
+        self.year = year
+        
     
+class Car(Vehicle):
+    def __init__(self, brand, year, doors):
+        super().__init__(brand, year)
+        self.doors = doors
+
+    def print_information(self):
+        print (f"Car:\n{self.brand}\n{self.year}\n{self.doors}")
+
+class Motorcycle(Vehicle):
+    def __init__ (self, brand, year, engine_size):
+        super().__init__(brand, year)
+        self.engine_size = engine_size
+
+    def print_information(self):
+        print (f"Motorcycle:\n{self.brand}\n{self.year}\n{self.engine_size}")
+
+car = Car("Toyota", 2022, "4 doors")
+motorcycle = Motorcycle("Yamaha", 2024, "689 cc")
+
+car.print_information()
+print ("")
+motorcycle.print_information()
