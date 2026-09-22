@@ -1,7 +1,7 @@
 import random # lets the game generate random scenarios and outcomes
 import os # gives access to operating system commands
 import ast # changes string list into actual list
-from game_objects import Item, Player, Room
+from game_objects import Item, Player, Room # ro folder game_projects importing different classes
 
 inventory = [] # players starting inventory
 knight_inventory = ["Sword", "Helmet", "Chestplate", "Leggings", "Strange Stew", "Secret Note"] # items owned by the knight
@@ -17,9 +17,9 @@ bad_choices = 0 # counts bad decisions
 knight_status = "none" # remembers what the player did to the knight / this acts as the global version of knight_status
 
 def load_intro():
-    with open("intro.txt", "r") as file: # opening intro.txt a READ and printing whats inside
-        intro = file.read()
-    return intro
+    with open("intro.txt", "r") as file: # opening intro.txt
+        intro = file.read() # intro reads the file
+    return intro # returns as output
 
 def load_instructions():
     with open("instructions.txt", "r") as file:
@@ -43,8 +43,8 @@ def save_game(): # saving all items, choices, locations, player profile etc.. in
         file.write(str(tower_items) + "\n")
 
         if starting_room.item is not None: # if the room still has an item
-            file.write("True\n")
-        else: file.write("False\n")
+            file.write("True\n") # writes True
+        else: file.write("False\n") # writes False
 
         if dungeon_room.item is not None:
             file.write("True\n")
@@ -59,7 +59,7 @@ def save_game(): # saving all items, choices, locations, player profile etc.. in
         else: file.write("False\n")
 
 def load_game(): # loads the games
-    global choices, knight_status, good_choices, bad_choices, dungeon_items, courtyard_items, tower_items
+    global choices, knight_status, good_choices, bad_choices, dungeon_items, courtyard_items, tower_items # using this to load into global variables so it doesnt create new one
 
     cleaned_lines = [] # store here clean version
     with open("save.txt", "r") as file: # opens save.txt in read mode
@@ -75,8 +75,8 @@ def load_game(): # loads the games
     "Tower Chamber": tower_chamber_room
     }
 
-    loaded_name = cleaned_lines[0]
-    loaded_age = int(cleaned_lines[1])
+    loaded_name = cleaned_lines[0] # creating new variables to be able to save
+    loaded_age = int(cleaned_lines[1]) # turning str to int if need to
     loaded_inventory = ast.literal_eval(cleaned_lines[2]) # ast.literal_eval changes a string to list
     loaded_health = int(cleaned_lines[3])
     loaded_level = int(cleaned_lines[4])
@@ -91,10 +91,8 @@ def load_game(): # loads the games
     loaded_starting_item = cleaned_lines[13]
     loaded_dungeon_item = cleaned_lines[14]
     loaded_courtyard_item = cleaned_lines[15]
-    loaded_tower_item = cleaned_lines[16]
 
     # making sure loaded values get saved
-
     player.name = loaded_name
     player.age = loaded_age
     player.inventory = loaded_inventory
@@ -109,24 +107,26 @@ def load_game(): # loads the games
     courtyard_items = loaded_courtyard_items
     tower_items = loaded_tower_items
 
-    if loaded_starting_item == "True": # checking if user doesnt have starting item
-        starting_room.item = old_map
-    else:
-        starting_room.item = None
+    # doing item checks 
+    if loaded_starting_item == "True": # if save file has item
+        starting_room.item = old_map # restore item
+    else: starting_room.item = None # if not don't restore
 
-    if loaded_dungeon_item == "True": # checking if user doesnt have dungeon item
-        dungeon_room.item = unlit_torch # adds unlit_torch into dungeon_rom.item
-    else:
-        dungeon_room.item = None
+    if loaded_dungeon_item == "True": 
+        dungeon_room.item = unlit_torch
+    else: dungeon_room.item = None
 
     if loaded_courtyard_item == "True":
         courtyard_room.item = lighter
-    else:
-        courtyard_room.item = None
+    else: courtyard_room.item = None
+
     print ("Game loaded.")
 
-def clear_screen(): # clears previous terminal text
-    os.system("cls" if os.name == "nt" else "clear") # cls for Windows, clear for macOS/Linux
+def clear_screen(): # clears previous terminal text for a cleaner look
+    if os.name == "nt": # "nt" means Windows machine
+        os.system("cls") # types "cls" into terminal
+
+    else: os.system("clear") # types clear into terminal for linux/macos
 
 def take_damage(damage): # removes health from player
     player.health -= damage
@@ -152,14 +152,16 @@ def add_item(item): # gives an item to player
 def pack_item(): # asks player for an item and adds it to inventory
     item = input("What item would you like to pack? ").strip()
 
-    if item:
+    if item in player.inventory: # checking if layers already has item
+        return "Item already in inventory!"
+    elif item not in player.inventory:
         add_item(item)
         print(f"Added {item} to your inventory.")
-    else: print("Please enter an item name.")
+
+    else: return "Please enter an item name."
 
 def collect():
-
-    if player.location.item is not None:
+    if player.location.item is not None: # checking if item is available to collect
         item_name = player.location.item.name
         player.collect_item()
 
@@ -176,7 +178,7 @@ def collect():
     else: return "No item to collect."
 
 def quit_game(): # displays goodbye message when player quits
-    print(f"See you again {player.name}...")
+    return f"See you again {player.name}..."
 
 def add_dungeon_item(item): # remembers dungeon loot
     dungeon_items.append(item)
@@ -264,7 +266,6 @@ Type "collect" to pick the torch up.
         take_damage(15)
 
     elif scenario == 2:
-
         print("""
 As you keep walking, you notice one of the stone walls looks slightly different from the others.
 You push against it and a hidden doorway slowly opens.
@@ -276,9 +277,7 @@ It might be useful later.
 
 Type "collect" to pick the torch up.
 """)
-
     else:
-
         print("""
 Further down the hallway, you almost trip over something lying on the ground.
 You look down and realise it's the remains of another adventurer.
@@ -320,8 +319,8 @@ As you're leaving the courtyard you notice a lighter beside a bush.
 Type "collect" to pick the lighter up.
 """)
                 break
-
             elif courtyard_choice == 1:
+
                 courtyard_chance = random.randint(1, 3) # has 3 different random scenarios
                 if courtyard_chance == 1:
                     print('''
@@ -363,7 +362,6 @@ Type "collect" to pick the lighter up.
                 print("Not a valid choice.")
 
     elif scenario == 2:
-
         print('''
 
 You walk deeper into the courtyard and notice an old wooden chest under a dead tree.
@@ -382,9 +380,7 @@ Do you:
 ''')
 
         while True:
-
             courtyard_choice = int(input("Choice: "))
-
             clear_screen()
 
             if courtyard_choice == 3:
@@ -399,7 +395,6 @@ Type "collect" to pick the lighter up.
                 break
 
             elif courtyard_choice == 2:
-
                 print('''
 You search the skeleton, but find nothing besides a lighter.
 
@@ -407,9 +402,7 @@ Type "collect" to pick the lighter up.
 ''')
                 level_up(5)
                 break
-
             elif courtyard_choice == 1:
-
                 print('''
 
 You grab the rusty lock and pull as hard as you can.
@@ -425,11 +418,9 @@ Type "collect" to pick the lighter up.
                 break
 
             else:
-
                 print("Not a valid choice.")
 
     else: # wounded knight scenario
-
         print('''
 You hear someone breathing heavily behind a broken stone wall.
 You find a wounded knight sitting against it.
@@ -448,15 +439,12 @@ Do you:
 ''')
 
         while True:
-
             courtyard_choice = int(input("Choice: "))
-
             clear_screen()
 
             if courtyard_choice == 3:
 
                 print('''
-
 You look at the wounded knight for a moment.
 You decide you've already got enough problems of your own.
 As you're walking away you notice a lighter near a bush.
@@ -474,7 +462,6 @@ Type "collect" to pick the lighter up.
                 if courtyard_chance == 1:
 
                     print('''
-
 The knight slowly falls asleep.
 You carefully search through his belongings and notice a lighter.
 
@@ -491,7 +478,6 @@ Type "collect" to pick the lighter up.
                     knight = Player('Guts', 32, knight_inventory, 25, 30, courtyard_room)
 
                     print('''
-
 You reach toward the knight's belongings.
 His eyes suddenly open.
 
@@ -540,7 +526,6 @@ Type "collect" to pick the lighter up.
 
 
 def tower(): # controls tower event
-
     print('''
 You climb the spiral staircase of the tower.
 The higher you go, the darker it gets.
@@ -792,6 +777,7 @@ Bad choices: {bad_choices}
 
 Thanks for playing!
 ''')
+
 name = input("Hello traveler.. What is your name? ")
 age = int(input(f"\nOh.. well hello {name}, good to meet you! May I ask your age? "))
 
@@ -802,7 +788,6 @@ old_map = Item("Old Map", 1)
 starting_room = Room("Castle", old_map) # creates starting room
 dungeon_room = Room("Dungeon", unlit_torch) # creates dungeon_room with unlit torch
 courtyard_room = Room("Courtyard", lighter) # creates courtyard_room with lighter
-
 tower_room = Room("Tower", None) # creates tower_room without an item
 tower_chamber_room = Room("Tower Chamber", None)# creates tower_chamber_room without an item
 
@@ -833,7 +818,7 @@ if player.age < 12:
     print("Yikes! Sorry.. you're too young for this game!")
 
 else:
-    print(load_intro())
+    print(load_intro()) # loads main game
 
     while True: # main game loop
         show_choices()
@@ -930,7 +915,6 @@ It's pretty darn dark in there.
 
                 if "Lit Torch" in player.inventory: # tower only finishes if player successfully lights torch
                     choices.remove("tower")
-
             else:
                 print('''
 
