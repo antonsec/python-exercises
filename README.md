@@ -27,3 +27,10 @@ Finished Module 7.
 Finished Module 8. 
 
 ## Module 9
+Finished Module 9.
+
+## Module 10
+Did 2 exercises.
+
+## Module 11
+Did.1 exercise.
