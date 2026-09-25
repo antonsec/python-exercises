@@ -33,4 +33,4 @@ Finished Module 9.
 Did 2 exercises.
 
 ## Module 11
-Did.1 exercise.
+Did 1 exercise.
