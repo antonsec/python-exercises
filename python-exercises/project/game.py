@@ -130,8 +130,6 @@ def clear_screen(): # clears previous terminal text for a cleaner look
 
 def take_damage(damage): # removes health from player
     player.health -= damage
-    if player.health < 1: # normal events can't kill the player
-        player.health = 1
 
 def add_good_choice(): # records good decisions
     global good_choices
