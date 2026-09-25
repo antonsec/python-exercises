@@ -2,5 +2,6 @@
     "python.REPL.enableREPLSmartSend": false,
     "chat.agent.enabled": false,
     "github.copilot.chat.copilotDebugCommand.enabled": false,
-    "github.copilot.chat.tools.viewImage.enabled": false
+    "github.copilot.chat.tools.viewImage.enabled": false,
+    "python-envs.defaultEnvManager": "ms-python.python:venv"
 }

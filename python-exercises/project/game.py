@@ -122,7 +122,7 @@ def load_game(): # loads the games
 
     print ("Game loaded.")
 
-def clear_screen(): # clears previous terminal text for a cleaner look
+def clear_screen(): # clears previous tesrminal text for a cleaner look
     if os.name == "nt": # "nt" means Windows machine
         os.system("cls") # types "cls" into terminal
 
@@ -151,12 +151,14 @@ def pack_item(): # asks player for an item and adds it to inventory
     item = input("What item would you like to pack? ").strip()
 
     if item in player.inventory: # checking if layers already has item
-        return "Item already in inventory!"
-    elif item not in player.inventory:
+        print ("Item already in inventory!")
+    
+    if item.isdigit() == True: # chekcing if item is a number
+        print ("Please enter a valid item!")
+    
+    elif item not in player.inventory: # last check to add item
         add_item(item)
         print(f"Added {item} to your inventory.")
-
-    else: return "Please enter an item name."
 
 def collect():
     if player.location.item is not None: # checking if item is available to collect
