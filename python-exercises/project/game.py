@@ -11,7 +11,6 @@ choices = ["dungeon", "courtyard", "tower", "tower_chamber"] # locations that ha
 dungeon_items = [] # keeps track of dungeon items
 courtyard_items = [] # keeps track of courtyard items
 tower_items = [] # keeps track of tower items
-chamber_items = [] # keeps track of chamber items
 good_choices = 0 # counts good decisions
 bad_choices = 0 # counts bad decisions
 knight_status = "none" # remembers what the player did to the knight / this acts as the global version of knight_status
