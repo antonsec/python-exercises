@@ -1,7 +1,7 @@
 import random # lets the game generate random scenarios and outcomes
 import os # gives access to operating system commands
 import ast # changes string list into actual list
-from game_objects import Item, Player, Room # ro folder game_projects importing different classes
+from game_objects import Item, Player, Room # from folder game_projects importing different classes
 
 inventory = [] # players starting inventory
 knight_inventory = ["Sword", "Helmet", "Chestplate", "Leggings", "Strange Stew", "Secret Note"] # items owned by the knight
@@ -54,8 +54,8 @@ def save_game(): # saving all items, choices, locations, player profile etc.. in
         else: file.write("False\n")
 
         if tower_room.item is not None:
-            file.write("True\n")
-        else: file.write("False\n")
+            file.write("True")
+        else: file.write("False")
 
 def load_game(): # loads the games
     global choices, knight_status, good_choices, bad_choices, dungeon_items, courtyard_items, tower_items # using this to load into global variables so it doesnt create new one
@@ -127,8 +127,11 @@ def clear_screen(): # clears previous tesrminal text for a cleaner look
 
     else: os.system("clear") # types clear into terminal for linux/macos
 
+
 def take_damage(damage): # removes health from player
     player.health -= damage
+    if player.health < 0:
+        player.health = 0
 
 def add_good_choice(): # records good decisions
     global good_choices
@@ -308,17 +311,17 @@ Do you:
 ''')
 
         while True: # starts another loop for more desicions
-            courtyard_choice = int(input("Choice: "))
+            courtyard_choice = input("Choice: ")
             clear_screen() # clear screen for nicer preview
 
-            if courtyard_choice == 3:
+            if courtyard_choice == "3":
                 print("""
 As you're leaving the courtyard you notice a lighter beside a bush.
 
 Type "collect" to pick the lighter up.
 """)
                 break
-            elif courtyard_choice == 1:
+            elif courtyard_choice == "1":
 
                 courtyard_chance = random.randint(1, 3) # has 3 different random scenarios
                 if courtyard_chance == 1:
@@ -346,7 +349,7 @@ Type "collect" to pick the lighter up.
                     take_damage(20)
                     break
 
-            elif courtyard_choice == 2:
+            elif courtyard_choice == "2":
                 print('''
 The footsteps lead you to an abandoned storage unit.
 
@@ -358,7 +361,23 @@ Type "collect" to pick the lighter up.
                 level_up(5)
                 break
             else: # incase user inputs something else
-                print("Not a valid choice.")
+                print("\nInvalid choice.")
+                print("Please choose one of the available choices.")
+
+                print('''
+You step into the courtyard.
+The stone floor is cracked and covered in moss.
+
+In the middle sits an old fountain, somehow still running.
+The water looks unusually clear.
+As you get closer, you notice fresh footprints around it.
+
+Do you:
+
+1. Drink from the fountain
+2. Inspect the footprint
+3. Leave it alone
+''')
 
     elif scenario == 2:
         print('''
@@ -379,11 +398,10 @@ Do you:
 ''')
 
         while True:
-            courtyard_choice = int(input("Choice: "))
+            courtyard_choice = input("Choice: ")
             clear_screen()
 
-            if courtyard_choice == 3:
-
+            if courtyard_choice == "3":
                 print("""
 You leave the chest and skeleton alone.
 As you're leaving the courtyard you notice a lighter near a bush.
@@ -393,7 +411,7 @@ Type "collect" to pick the lighter up.
 
                 break
 
-            elif courtyard_choice == 2:
+            elif courtyard_choice == "2":
                 print('''
 You search the skeleton, but find nothing besides a lighter.
 
@@ -401,7 +419,7 @@ Type "collect" to pick the lighter up.
 ''')
                 level_up(5)
                 break
-            elif courtyard_choice == 1:
+            elif courtyard_choice == "1":
                 print('''
 
 You grab the rusty lock and pull as hard as you can.
@@ -417,7 +435,17 @@ Type "collect" to pick the lighter up.
                 break
 
             else:
-                print("Not a valid choice.")
+                print("\nInvalid choice.")
+                print("Please choose one of the available choices.")
+
+                print('''
+
+Do you:
+
+1. Try to force the chest open
+2. Search the skeleton
+3. Leave the chest and skeleton alone
+''')
 
     else: # wounded knight scenario
         print('''
@@ -438,11 +466,9 @@ Do you:
 ''')
 
         while True:
-            courtyard_choice = int(input("Choice: "))
+            courtyard_choice = input("Choice: ")
             clear_screen()
-
-            if courtyard_choice == 3:
-
+            if courtyard_choice == "3":
                 print('''
 You look at the wounded knight for a moment.
 You decide you've already got enough problems of your own.
@@ -453,9 +479,8 @@ Type "collect" to pick the lighter up.
                 knight_status = "ignored" # remembers choice for final chamber
                 break
 
-            elif courtyard_choice == 2:
+            elif courtyard_choice == "2":
                 print("You try to search his pockets...")
-
                 courtyard_chance = random.randint(1, 4)
 
                 if courtyard_chance == 1:
@@ -473,7 +498,7 @@ Type "collect" to pick the lighter up.
                     level_up(5)
                     break
 
-                else:
+                elif courtyard_chance == "1":
                     knight = Player('Guts', 32, knight_inventory, 25, 30, courtyard_room)
 
                     print('''
@@ -498,8 +523,9 @@ Type "collect" to pick the lighter up.
                     add_bad_choice()
                     take_damage(20)
                     break
+                else: print ("Not a vald choice.")
 
-            elif courtyard_choice == 1:
+            elif courtyard_choice == "1":
                 print('''
 You try to help the knight the best way you can..
 You look around and find an old medkit that luckily hasn't been used!
@@ -520,7 +546,15 @@ Type "collect" to pick the lighter up.
                 break
 
             else:
-                print("Not a valid choice.")
+                print("\nInvalid choice.")
+                print("Please choose one of the available choices.")
+                print("""
+
+Do you:
+
+1. Help the knight
+2. Search his belongings
+3. Walk away""")
 
 
 
@@ -533,14 +567,16 @@ Eventually you reach a completely dark floor.
 You can barely see your own hands.
 
 Do you:
+
 1. Try to continue through the darkness
 2. Search your inventory for something useful
 3. Go back downstairs
 ''')
 
     while True:
-        choice = int(input("Choice: "))
-        if choice == 3:
+        choice = input("Choice: ")
+        clear_screen()
+        if choice == '3':
             print('''
 Feeling scared you head back downstairs.
 On your way down you stumble and hurt yourself.
@@ -549,7 +585,7 @@ On your way down you stumble and hurt yourself.
             take_damage(5)
             break
 
-        elif choice == 2:
+        elif choice == '2':
             print('''
 You stop and think for a moment.
 Walking blindly through the tower probably isn't the smartest idea.
@@ -575,8 +611,8 @@ Looks like this tower might actually be hiding something.
 
             else:
                 print('''
-You search through your inventory and find nothing useful..
-Well, nothing useful for lighting up an ancient tower anyway.
+You search through your inventory and find nothing useful.
+Nothing useful for lighting up an ancient tower anyway.
 
 You decide it might be smarter to check the other rooms and come back again..
 ''')
@@ -595,7 +631,14 @@ You manage to get back up, but that definitely hurt.
             take_damage(15)
             break
         else:
-            print("Not a valid choice.")
+            print("\nInvalid choice.")
+            print("Please choose one of the available choices.")
+            print ('''
+Do you:
+
+1. Try to continue through the darkness
+2. Search your inventory for something useful
+3. Go back downstairs''')
 
 
 
@@ -736,7 +779,6 @@ There is nowhere left to run.
 You died.
 
 Good choices: {good_choices}
-
 Bad choices: {bad_choices}
 
 Maybe don't steal from Guts next time.
@@ -771,7 +813,6 @@ Alone.
 You escaped the castle!
 
 Good choices: {good_choices}
-
 Bad choices: {bad_choices}
 
 Thanks for playing!
@@ -811,7 +852,7 @@ def show_choices(): # shows locations that are currently available
     if "dungeon" not in choices and "courtyard" not in choices and "tower" not in choices and "tower_chamber" in choices:
         print("4. Enter the tower chamber") # final location appears after other areas are finished
 
-    print("Other choices: collect, pack, inventory, profile, instructions, save, load, quit")
+    print("Other choices: collect, pack, inventory, profile, instructions, save, load, hit, run quit")
 
 if player.age < 12:
     print("Yikes! Sorry.. you're too young for this game!")
@@ -822,6 +863,9 @@ else:
     while True: # main game loop
         show_choices()
         choice = input("Choice: ").strip().lower()
+        if player.health < 1:
+            print("You died.")
+            break
         clear_screen()
 
         if choice == "quit" or choice == "":
