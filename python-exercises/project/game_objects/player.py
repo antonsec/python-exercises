@@ -13,4 +13,4 @@ class Player: # blueprint for creating characters
     def collect_item(self): # collects item from current room
         if self.location.item is not None: # checking if theres an item available
             self.inventory.append(self.location.item.name) # adding item to inventory
-            self.location.item = None # remove the it
+            self.location.item = None # remove the item after collecting
