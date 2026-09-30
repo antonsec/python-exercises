@@ -10,8 +10,8 @@ The player explores an abandoned castle, collects items and tries to escape.
 
 ## Project structure
 
-game-project/
-├── game.py
+project/
+├── main.py
 ├── intro.txt
 ├── instructions.txt
 ├── save.txt

@@ -14,6 +14,7 @@ tower_items = [] # keeps track of tower items
 good_choices = 0 # counts good decisions
 bad_choices = 0 # counts bad decisions
 knight_status = "none" # remembers what the player did to the knight / this acts as the global version of knight_status
+player_death = False
 
 def load_intro():
     with open("intro.txt", "r") as file: # opening intro.txt
@@ -365,13 +366,6 @@ Type "collect" to pick the lighter up.
                 print("Please choose one of the available choices.")
 
                 print('''
-You step into the courtyard.
-The stone floor is cracked and covered in moss.
-
-In the middle sits an old fountain, somehow still running.
-The water looks unusually clear.
-As you get closer, you notice fresh footprints around it.
-
 Do you:
 
 1. Drink from the fountain
@@ -574,6 +568,7 @@ Do you:
 ''')
 
     while True:
+        global player_death
         choice = input("Choice: ")
         clear_screen()
         if choice == '3':
@@ -617,7 +612,12 @@ Nothing useful for lighting up an ancient tower anyway.
 You decide it might be smarter to check the other rooms and come back again..
 ''')
                 break
-        elif choice == 1:
+        elif choice == '1':
+            take_damage(15)
+            if player.health < 1:
+                    print ('Maybe try not to fall so many times...')
+                    player_death = True       
+                    break
 
             print('''
 You take a deep breath and keep walking forward.
@@ -628,7 +628,6 @@ You stumble down a short flight of stairs and hit the ground hard.
 
 You manage to get back up, but that definitely hurt.
 ''')
-            take_damage(15)
             break
         else:
             print("\nInvalid choice.")
@@ -678,9 +677,10 @@ Do you:
 ''')
 
         while True:
-            chamber_choice = int(input("Choice: "))
+            global player_death
+            chamber_choice = input("Choice: ")
             clear_screen()
-            if chamber_choice == 1:
+            if chamber_choice == '1':
                 print('''
 You kneel beside the wounded knight.
 You find some old bandages nearby and help patch up his wounds. After a while, he slowly manages to stand.
@@ -696,7 +696,7 @@ Guts: "I owe you one."
                 add_good_choice()
                 break
 
-            elif chamber_choice == 2:
+            elif chamber_choice == '2':
                 print('''
 You look at the wounded knight for a moment.
 
@@ -707,7 +707,7 @@ You leave him behind and walk toward the gate.
                 add_bad_choice()
                 break
 
-            elif chamber_choice == 3:
+            elif chamber_choice == '3':
                 print('''
 You notice a few useful things attached to the knight's armor.
 You reach toward them.
@@ -726,7 +726,15 @@ Guts: "I'll be waiting."
                 knight_status = "angered"
                 add_bad_choice()
                 break
-            else: print("Not a valid choice.")
+            else: 
+                print("\nInvalid choice.")
+                print("Please choose one of the available choices.")
+                print('''
+Do you:
+1. Help the knight
+2. Leave him alone
+3. Search his belongings
+''')
 
     if knight_status == "helped": # good ending
         print(f'''
@@ -752,7 +760,6 @@ The two of you step outside.
 You escaped the castle!
 
 Good choices: {good_choices}
-
 Bad choices: {bad_choices}
 
 Thanks for playing!
@@ -784,7 +791,8 @@ Bad choices: {bad_choices}
 Maybe don't steal from Guts next time.
 ''')
 
-        player.health = 0 # knight is the only thing that can actually kill player
+        player_death = True
+        player.health = 0
 
     else: # neutral ending after ignoring knight
         print(f'''
@@ -861,120 +869,121 @@ else:
     print(load_intro()) # loads main game
 
     while True: # main game loop
-        show_choices()
-        choice = input("Choice: ").strip().lower()
-        if player.health < 1:
-            print("You died.")
-            break
-        clear_screen()
+            if player_death == True:
+                print("You died.")
+                break
 
-        if choice == "quit" or choice == "":
-            quit_game()
-            break
+            else:    
+                show_choices()
+                choice = input("Choice: ").strip().lower()
+                clear_screen()
 
-        elif choice == "pack":
-            pack_item()
+                if choice == "quit" or choice == "":
+                    quit_game()
+                    break
 
-        elif choice == "inventory":
-            show_items()
+                elif choice == "pack":
+                    pack_item()
 
-        elif choice == "profile":
-            profile()
+                elif choice == "inventory":
+                    show_items()
 
-        elif choice == "collect":
-            print (collect())
+                elif choice == "profile":
+                    profile()
 
-        elif choice == "instructions":
-            print (load_instructions())
+                elif choice == "collect":
+                    print (collect())
 
-        elif choice == "save":
-            save_game()
-            print ("Game saved.")
+                elif choice == "instructions":
+                    print (load_instructions())
 
-        elif choice == "load":
-            load_game()
+                elif choice == "save":
+                    save_game()
+                    print ("Game saved.")
 
-        elif choice == "1":
+                elif choice == "load":
+                    load_game()
 
-            if "dungeon" not in choices:  # already visited
-                player.move(dungeon_room)
-                print('''
+                elif choice == "1":
+
+                    if "dungeon" not in choices:  # already visited
+                        player.move(dungeon_room)
+                        print('''
 Hmm seems like we've already been to the dungeon,
 but I guess we can check if we left something behind.
-        ''')
+                ''')
 
-                if dungeon_room.item is not None:
-                    print("""
+                        if dungeon_room.item is not None:
+                            print("""
 You notice the Unlit Torch is still here.
 
 Type "collect" to pick the Unlit Torch up.
-        """)
-                else: print("Looks like there's nothing left to collect here.")
+                """)
+                        else: print("Looks like there's nothing left to collect here.")
 
-            else: # first dungeon visit
-                player.move(dungeon_room)
-                dungeon()
-                choices.remove("dungeon")
+                    else: # first dungeon visit
+                        player.move(dungeon_room)
+                        dungeon()
+                        choices.remove("dungeon")
 
-        elif choice == "2":
-            player.move(courtyard_room)
-            if "courtyard" not in choices:
-                print('''
+                elif choice == "2":
+                    player.move(courtyard_room)
+                    if "courtyard" not in choices:
+                        print('''
 Hmm seems like we've already been to the courtyard,
 but I guess we can check if we left something behind.
-''')
-                if courtyard_room.item is not None:
-                    print("""
+        ''')
+                        if courtyard_room.item is not None:
+                            print("""
 You notice the Lighter is still here.
 
 Type "collect" to pick the Lighter up.
-""")
-                else: print("Looks like there's nothing left to collect here.")
+        """)
+                        else: print("Looks like there's nothing left to collect here.")
 
-            else: # first courtyard visit
-                player.move(courtyard_room)
-                courtyard()
-                choices.remove("courtyard") # marks courtyard completed
+                    else: # first courtyard visit
+                        player.move(courtyard_room)
+                        courtyard()
+                        choices.remove("courtyard") # marks courtyard completed
 
-        elif choice == "3":
-            if "tower" not in choices:
-                print('''
+                elif choice == "3":
+                    if "tower" not in choices:
+                        print('''
 
 Hmm seems like we've already climbed the tower,
 but I guess we can check if we left something behind.
 
 Here's what we got from the tower:
-''')
-                player.move(tower_room)
-                show_tower_items()
+        ''')
+                        player.move(tower_room)
+                        show_tower_items()
 
-            elif "Unlit Torch" in player.inventory and "Lighter" in player.inventory:
-                print('''
+                    elif "Unlit Torch" in player.inventory and "Lighter" in player.inventory:
+                        print('''
 This seems pretty scary, but it looks like we have what we need now.
 It's pretty darn dark in there.
-''')
-                player.move(tower_room)
-                tower()
+        ''')
+                        player.move(tower_room)
+                        tower()
 
-                if "Lit Torch" in player.inventory: # tower only finishes if player successfully lights torch
-                    choices.remove("tower")
-            else:
-                print('''
-
+                        if "Lit Torch" in player.inventory: # tower only finishes if player successfully lights torch
+                            choices.remove("tower")
+                    else:
+                        print('''
 We shouldn't go there yet.
 It's very dark and we seem like we're missing some items.
 
 Maybe we should explore somewhere else first.
-''')
-                
-        elif choice == "4":
-            if "dungeon" not in choices and "courtyard" not in choices and "tower" not in choices and "tower_chamber" in choices:
-                player.move(tower_chamber_room)
-                tower_chamber()
-                choices.remove("tower_chamber")
-                break # chamber contains final ending so game finishes here
-            else:
-                print("You can't go there yet.")
-        else:
-            print("\nInvalid input..")
-            print("Please choose one of the available choices.")
+        ''')
+                        
+                elif choice == "4":
+                    if "dungeon" not in choices and "courtyard" not in choices and "tower" not in choices and "tower_chamber" in choices:
+                        player.move(tower_chamber_room)
+                        tower_chamber()
+                        choices.remove("tower_chamber")
+                        break # chamber contains final ending so game finishes here
+                    else:
+                        print("You can't go there yet.")
+                else:
+                    print("\nInvalid input..")
+                    print("Please choose one of the available choices.")
