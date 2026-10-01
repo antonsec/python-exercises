@@ -54,10 +54,6 @@ def save_game(): # saving all items, choices, locations, player profile etc.. in
             file.write("True\n")
         else: file.write("False\n")
 
-        if tower_room.item is not None:
-            file.write("True")
-        else: file.write("False")
-
 def load_game(): # loads the games
     global choices, knight_status, good_choices, bad_choices, dungeon_items, courtyard_items, tower_items # using this to load into global variables so it doesnt create new one
 
