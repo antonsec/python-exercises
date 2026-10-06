@@ -41,6 +41,4 @@ The game uses `Player`, `Room` and `Item` objects.
 
 ## Saving
 
-The game reads the introduction and instructions from separate text files.
-
 The player's progress can be saved to `save.txt` and loaded later to continue the game.
