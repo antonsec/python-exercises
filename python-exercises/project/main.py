@@ -54,6 +54,10 @@ def save_game(): # saving all items, choices, locations, player profile etc.. in
             file.write("True\n")
         else: file.write("False\n")
 
+        if tower_room.item is not None:
+            file.write("True")
+        else: file.write("False")
+
 def load_game(): # loads the games
     global choices, knight_status, good_choices, bad_choices, dungeon_items, courtyard_items, tower_items # using this to load into global variables so it doesnt create new one
 
@@ -585,7 +589,7 @@ You search through your inventory, hoping you brought something that could help.
 ''')
             show_items()
 
-            if "Unlit Torch" in player.inventory and "Lighter" in player.inventory: # checking if user has correct items
+            if unlit_torch.name in player.inventory and lighter.name in player.inventory: # checking if user has correct items
                 print('''
 You pull out the unlit torch and the lighter.
 After a few tries, the torch finally catches fire.
@@ -594,9 +598,9 @@ The dark hallway lights up around you.
 You can now see an old wooden door at the end of the corridor that you completely missed before.
 Looks like this tower might actually be hiding something.
 ''')
-                remove_player_inv("Unlit Torch")
-                add_item("Lit Torch")
-                add_tower_item("Lit Torch")
+                remove_player_inv(unlit_torch.name)
+                add_item(lit_torch.name)
+                add_tower_item(lit_torch.name)
                 add_good_choice()
                 break
 
@@ -610,7 +614,7 @@ You decide it might be smarter to check the other rooms and come back again..
                 break
         elif choice == '1':
             take_damage(15)
-            if player.health < 1:
+            if player.health < 1: # incase player spams falling down
                     print ('Maybe try not to fall so many times...')
                     player_death = True       
                     break
@@ -762,7 +766,6 @@ Thanks for playing!
 ''')
 
     elif knight_status == "angered": # only ending where player dies
-
         print(f'''
 You reach the massive iron gate. Something is strange.
 
@@ -786,7 +789,6 @@ Bad choices: {bad_choices}
 
 Maybe don't steal from Guts next time.
 ''')
-
         player_death = True
         player.health = 0
 
@@ -828,6 +830,7 @@ age = int(input(f"\nOh.. well hello {name}, good to meet you! May I ask your age
 unlit_torch = Item("Unlit Torch", 2)
 lighter = Item("Lighter", 1)
 old_map = Item("Old Map", 1)
+lit_torch = Item("Lit Torch", 1)
 
 starting_room = Room("Castle", old_map) # creates starting room
 dungeon_room = Room("Dungeon", unlit_torch) # creates dungeon_room with unlit torch
@@ -954,7 +957,7 @@ Here's what we got from the tower:
                         player.move(tower_room)
                         show_tower_items()
 
-                    elif "Unlit Torch" in player.inventory and "Lighter" in player.inventory:
+                    elif unlit_torch.name in player.inventory and lighter.name in player.inventory:
                         print('''
 This seems pretty scary, but it looks like we have what we need now.
 It's pretty darn dark in there.
