@@ -932,7 +932,7 @@ Type "collect" to pick the Unlit Torch up.
 Hmm seems like we've already been to the courtyard,
 but I guess we can check if we left something behind.
         ''')
-                        if courtyard_room.item is not None:
+                        if courtyard_room.item is not None: # checking if item in room still after visiting
                             print("""
 You notice the Lighter is still here.
 
