@@ -4,9 +4,9 @@
 
 ## About
 
-The Game is a text-based adventure game made with Python.
+The Game is a text-based adventure game made in purely Python.
 
-The player explores an abandoned castle, collects items and tries to escape.
+The player explores an abandoned castle, collects items and tries to escape, but has a few problems along the way.
 
 ## Project structure
 
@@ -22,7 +22,7 @@ project/
     ├── player.py
     └── room.py
 
-- `game.py` contains the main game, menus, events and save/load functions.
+- `main.py` contains the main game, menus, events and save/load functions.
 - `intro.txt` contains the introduction.
 - `instructions.txt` contains the game instructions.
 - `save.txt` stores the saved game.
@@ -37,7 +37,6 @@ The game uses `Player`, `Room` and `Item` objects.
 - `Item` has a name and weight.
 - `Room` has a name and can contain an item.
 - `Player` has a name, inventory and current room.
-- The player can move between rooms and collect items.
 
 ## Saving
 
